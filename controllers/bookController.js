@@ -30,7 +30,7 @@ exports.getBook = async (req, res) => {
     if (!book) {
       return res.status(404).json({ message: 'Book not found' });
     }
-    res.json(book);
+    res.status(200).send(JSON.stringify(book, null, 2));
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -40,7 +40,7 @@ exports.getBook = async (req, res) => {
 exports.getAllBooks = async (req, res) => {
   try {
     const books = await Book.find();
-    res.json(books);
+    res.status(200).send(JSON.stringify(books, null, 2));
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

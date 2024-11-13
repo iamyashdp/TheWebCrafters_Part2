@@ -2,9 +2,27 @@ const Book = require('../models/book');
 
 // Create a new book
 exports.createBook = async (req, res) => {
-    res.status(501).json({ message: 'Not implemented' });
+  try {
+    const { title, author, publishedYear, availableQuantity, genre, isbn } = req.body;
+   
+    if (!title || !author || !publishedYear || !availableQuantity || !genre) {
+      return res.status(400).json({ message: "Title, author, publishedYear, availableQuantity, and genre are required" });
+    }
+ 
+    // If ISBN is provided, check if it already exists
+    if (isbn) {
+      const existingBook = await Book.findOne({ isbn });
+      if (existingBook) {
+        return res.status(400).json({ message: "A book with this ISBN already exists" });
+      }
+    }
+ 
+    const book = await Book.create(req.body);
+    res.status(201).json(book);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
-
 // Get a single book
 exports.getBook = async (req, res) => {
   try {

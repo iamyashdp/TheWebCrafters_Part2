@@ -4,7 +4,7 @@ const Book = require('../models/Book');
 exports.createBook = async (req, res) => {
   try {
     const { title, author, publishedYear, availableQuantity, genre, isbn } = req.body;
-    
+
     if (!title || !author || !publishedYear || !availableQuantity || !genre) {
       return res.status(400).json({ message: "Title, author, publishedYear, availableQuantity, and genre are required" });
     }
@@ -61,7 +61,7 @@ exports.updateBook = async (req, res) => {
     }
 
     const book = await Book.findByIdAndUpdate(
-      req.params.id, 
+      req.params.id,
       { title, author, publishedYear, availableQuantity, genre, isbn },
       { new: true, runValidators: true }
     );

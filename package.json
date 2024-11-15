@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+<<<<<<< HEAD
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
@@ -17,6 +18,15 @@
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.1"
+=======
+    "bcryptjs": "^2.4.3",       
+    "body-parser": "^1.20.3",   
+    "cors": "^2.8.5",           
+    "dotenv": "^16.4.5",        
+    "express": "^4.21.1",       
+    "jsonwebtoken": "^9.0.2",   
+    "mongoose": "^8.8.1"        
+>>>>>>> 98a354ee5c0befa76337f336d9eb99b52cb7db1c
   },
   "devDependencies": {
     "nodemon": "^3.1.7"

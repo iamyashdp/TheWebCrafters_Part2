@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const bookRoutes = require('./routes/bookRoutes');
-const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
@@ -14,7 +13,6 @@ app.use(express.json());
 
 // Routes
 app.use('/api/books', bookRoutes);
-app.use('/api/auth', authRoutes);
 
 // 404 Not Found middleware
 app.use((req, res, next) => {

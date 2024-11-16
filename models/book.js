@@ -6,7 +6,7 @@ const bookSchema = new mongoose.Schema({
   publishedYear: { type: Number, required: true },
   availableQuantity: { type: Number, required: true },
   genre: { type: String, required: true },
-  isbn: { type: String } // Remove unique and sparse options for now
+  isbn: { type: String } 
 }, { timestamps: true });
 
 module.exports = mongoose.model('Book', bookSchema);

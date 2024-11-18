@@ -1,19 +1,24 @@
 // Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage(''); // Reset error message
+    setErrorMessage(''); 
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { username, password });
       localStorage.setItem('token', response.data.token);
       onLogin();
+      navigate('/');
     } catch (error) {
       console.error('Login failed:', error);
       if (error.response) {
@@ -27,6 +32,7 @@ const Login = ({ onLogin }) => {
   return (
     <div className='form-container'>
       <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
         <input
           type="text"
           placeholder="Username"
@@ -42,7 +48,7 @@ const Login = ({ onLogin }) => {
           required
         />
         <button type="submit">Login</button>
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} {/* Display error message */}
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} 
       </form>
     </div>
   );

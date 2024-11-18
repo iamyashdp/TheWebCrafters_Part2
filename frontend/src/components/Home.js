@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import BookList from './BookList';
+import './Home.css'; 
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -18,7 +19,7 @@ const Home = () => {
   return (
     <div className='home'>
       <h1>Welcome to the Book Store</h1>
-      <BookList books={books} />
+      <BookList books={books} setBooks={setBooks} />
     </div>
   );
 };

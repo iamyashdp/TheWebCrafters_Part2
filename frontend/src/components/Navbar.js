@@ -1,6 +1,7 @@
 // Navbar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Navbar.css'; 
 
 const Navbar = ({ isAuthenticated, onLogout }) => {
   return (
@@ -19,6 +20,8 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
             <Link to="/register">Register</Link>
           </>
         )}
+        {isAuthenticated && <Link to="/addbook">Add Book</Link>}
+
       </div>
     </nav>
   );

@@ -1,5 +1,6 @@
 .book-list {
   padding: 2rem;
+  list-style: none; 
 }
 
 .book-list ul {
@@ -28,4 +29,15 @@
 
 .book-item p {
   margin: 0.2rem 0;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    border-radius: 5px;
 }

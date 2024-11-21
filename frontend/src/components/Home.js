@@ -9,8 +9,15 @@ const Home = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await axios.get('http://localhost:5000/api/books');
-      setBooks(response.data);
+      try{
+        const response = await axios.get('http://localhost:5000/api/books');
+        setBooks(response.data);
+      }
+      catch(err){
+        console.error('Error fetching books:', err);
+        alert(err.response?.data?.message || 'Failed to fetch books. Please make sure backend server is running. Please go to ../backend and run `node app` command to run ');
+      }
+      
     };
 
     fetchBooks();
@@ -18,7 +25,7 @@ const Home = () => {
 
   return (
     <div className='home'>
-      <h1>Welcome to the Book Store</h1>
+      <h1>Welcome to the Library</h1>
       <BookList books={books} setBooks={setBooks} />
     </div>
   );

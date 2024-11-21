@@ -1,43 +1,121 @@
+/* BookList.css */
 .book-list {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 2rem;
-  list-style: none; 
 }
 
-.book-list ul {
-    list-style: none; 
-    padding: 0;
-    margin: 0;
-  }
-  
+.book-list h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
 
 .book-item {
   background-color: white;
-  margin: 0.5rem 0;
-  padding: 1rem;
-  border-radius: 4px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  margin-bottom: 2rem; 
 }
 
 .book-item:hover {
-  transform: scale(1.02); 
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .book-item h3 {
-  margin: 0 0 0.5rem;
+  margin: 0 0 1rem;
+  font-size: 1.3rem;
+  color: #2c3e50;
 }
 
 .book-item p {
-  margin: 0.2rem 0;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #555;
 }
 
-button {
-    background-color: #4CAF50;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    transition: color 0.3s;
-    padding: 0.5rem;
-    margin-left: 0.5rem;
-    border-radius: 5px;
+.book-item-buttons {
+  display: flex;
+  gap: 0.8rem;
+  padding-top: 1.5rem;
+}
+
+.book-item-buttons a {
+  flex: 1;
+}
+
+
+.book-item-buttons button {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+/* Edit button */
+.book-item-buttons a button {
+  background-color: #007bff;
+  color: white;
+}
+
+.book-item-buttons a button:hover {
+  background-color: #0056b3;
+}
+
+/* Delete button */
+.book-item-buttons > button {
+  flex: 1;
+  background-color: #dc3545;
+  color: white;
+}
+
+.book-item-buttons > button:hover {
+  background-color: #c82333;
+}
+
+@media (max-width: 768px) {
+  .book-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .book-list {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .book-list {
+    padding: 1rem;
+  }
+  
+  .book-item {
+    padding: 1.25rem;
+  }
 }

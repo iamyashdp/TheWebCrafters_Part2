@@ -1,4 +1,5 @@
 const Book = require('../models/Book');
+const mongoose = require('mongoose');
 
 // Create a new book
 exports.createBook = async (req, res) => {
@@ -75,6 +76,88 @@ exports.updateBook = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+// Borrow a book
+exports.borrowBook = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user.id;  
+
+    const book = await Book.findById(id);
+    if (!book) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+
+    if (book.availableQuantity <= 0) {
+      return res.status(400).json({ message: 'Book is not available to borrow' });
+    }
+
+    book.borrowedBy.push({ userId, borrowedDate: new Date() });
+    book.availableQuantity -= 1;
+    await book.save(); 
+
+    res.status(200).json({ message: `Book borrowed successfully "${book.title}"`, book });
+
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Get all borrowed books for the current user
+exports.getBorrowedBooks = async (req, res) => {
+  try {
+    const userId = req.user.id; // Assuming user ID is in the token
+    const borrowedBooks = await Book.find({ 'borrowedBy.userId': userId });
+
+    if (borrowedBooks.length === 0) {
+      return res.status(404).json({ message: 'No books borrowed yet' });
+    }
+
+    res.status(200).json(borrowedBooks);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.returnBook = async (req, res) => {
+  const { id } = req.params;  // Accessing bookId from the URL param
+  const userId = req.user.id;  // Assuming you're using some kind of authentication middleware
+
+  if (!id) {
+    return res.status(400).json({ message: "Invalid book ID" });
+  }
+
+  try {
+    // Find the book by its ID
+    const book = await Book.findById(id);
+    
+    if (!book) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+
+    // Check if the book is borrowed by the current user
+    const borrowedBook = book.borrowedBy.find(borrowed => borrowed.userId.toString() === userId);
+
+    if (!borrowedBook) {
+      return res.status(400).json({ message: "This book was not borrowed by the user" });
+    }
+
+    // Remove the user from the borrowed list
+    book.borrowedBy = book.borrowedBy.filter(borrowed => borrowed.userId.toString() !== userId);
+
+    // Increment the available quantity of the book
+    book.availableQuantity += 1;
+
+    await book.save();
+
+    return res.status(200).json({ message: "Book returned successfully" });
+
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
 
 // Delete a book
 exports.deleteBook = async (req, res) => {

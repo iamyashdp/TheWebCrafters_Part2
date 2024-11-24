@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './BookList.css';
+import BorrowBook from './BorrowBook'; // Import the BorrowBook component
 
 const BookList = ({ books, setBooks }) => {
   const handleDelete = async (id) => {
@@ -29,6 +30,12 @@ const BookList = ({ books, setBooks }) => {
     }
   };
 
+  const handleBorrow = (bookId) => {
+    setBooks(books.map((book) => 
+      book._id === bookId ? { ...book, availableQuantity: book.availableQuantity - 1 } : book
+    ));
+  };
+
   return (
     <div className="book-list">
       <h2>Available Books</h2>
@@ -45,6 +52,11 @@ const BookList = ({ books, setBooks }) => {
                 <button>Edit</button>
               </Link>
               <button onClick={() => handleDelete(book._id)}>Delete</button>
+              {book.availableQuantity > 0 ? (
+                <BorrowBook bookId={book._id} onBorrow={handleBorrow} />
+              ) : (
+                <p>Not Available</p>
+              )}
             </div>
           </li>
         ))}

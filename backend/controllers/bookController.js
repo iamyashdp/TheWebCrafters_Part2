@@ -92,6 +92,12 @@ exports.borrowBook = async (req, res) => {
       return res.status(400).json({ message: 'Book is not available to borrow' });
     }
 
+   // Check if the user has already borrowed the book
+    const alreadyBorrowed = book.borrowedBy.some(borrowed => borrowed.userId.toString() === userId);
+    if (alreadyBorrowed) {
+     return res.status(400).json({ message: 'You have already borrowed this book' });
+    }
+
     book.borrowedBy.push({ userId, borrowedDate: new Date() });
     book.availableQuantity -= 1;
     await book.save(); 

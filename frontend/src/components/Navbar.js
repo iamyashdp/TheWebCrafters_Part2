@@ -14,7 +14,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
         {isAuthenticated && <Link to="/addbook">Add Book</Link>}
         {isAuthenticated ? (
           <>
-            <Link to="/myprofile">My Profile</Link>
+            <Link to="/myprofile">My Books</Link>
             <button onClick={onLogout}>Logout</button>
           </>
           

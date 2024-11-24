@@ -7,15 +7,17 @@ import logo from './logo.jpg';
 const Navbar = ({ isAuthenticated, onLogout }) => {
   return (
     <nav>
-      <img src={logo} alt="Library Manager Logo" className="navbar-logo" />
-      <h1>Library Manager</h1>
+      <Link to="/"> 
+        <img src={logo} alt="Library Manager Logo" className="navbar-logo" />
+      </Link>
+      <Link to="/"><h1>Library Manager</h1></Link>
       <div className="nav-links"> 
         <Link to="/">Home</Link>
         {isAuthenticated && <Link to="/addbook">Add Book</Link>}
         {isAuthenticated ? (
           <>
             <Link to="/myprofile">My Books</Link>
-            <button onClick={onLogout}>Logout</button>
+            <button onClick={onLogout} >Logout</button>
           </>
           
         ) : (

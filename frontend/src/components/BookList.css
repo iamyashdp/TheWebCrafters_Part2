@@ -94,24 +94,26 @@
   background-color: #c82333;
 }
 
-.borrow-button {
-  background-color: #28a745;
-  color: white;
-  padding: 0.6rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s;
+/* Borrow button */
+.book-item .borrow-button {
+  background-color: #28a745; 
+  color: white; 
+  padding: 0.6rem 1.2rem; 
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  font-weight: 500; 
+  transition: background-color 0.3s, transform 0.2s; 
 }
 
-.borrow-button:hover {
-  background-color: #218838;
+.book-item .borrow-button:hover {
+  background-color: #218838; 
+  transform: scale(1.05); 
 }
 
 /* Return button */
 .return-button {
-  background-color: #ffc107;
+  background-color: #0056b3;
   color: white;
   padding: 0.6rem 1rem;
   border: none;

@@ -8,6 +8,7 @@ import Register from './components/Register';
 import AddBook from './components/AddBook';
 import EditBook from './components/EditBook';
 import MyProfile from './components/MyProfile';
+import Footer from './components/Footer';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
@@ -31,8 +32,8 @@ const App = () => {
         <Route path="/addbook" element={<AddBook />} />
         <Route path="/editbook/:bookId" element={<EditBook />} />
         <Route path="/myprofile" element={<MyProfile />} />
-
       </Routes>
+      <Footer />
     </Router>
   );
 };

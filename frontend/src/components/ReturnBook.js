@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ReturnBook = ({ bookId, onReturn }) => {
+  const navigate = useNavigate();
   const [error, setError] = useState('');
 
   const handleReturn = async () => {
@@ -22,7 +24,8 @@ const ReturnBook = ({ bookId, onReturn }) => {
       );
 
       alert('Book returned successfully!');
-      onReturn(bookId);  // Update the UI to reflect the return action
+      onReturn(bookId);
+      navigate('/');  
     } catch (err) {
       console.error('Error returning book:', err);
       setError(err.response?.data?.message || 'Failed to return book. Please try again.');

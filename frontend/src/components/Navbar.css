@@ -33,15 +33,16 @@ nav a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.logout-button {
-  background: none;
+button {
+  background: #ff9102;
   border: none;
   color: white;
   cursor: pointer;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
+  border-radius: 5px;
 }
 
-.logout-button:hover {
+button:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }

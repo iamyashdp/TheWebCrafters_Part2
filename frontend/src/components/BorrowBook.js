@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './BookList.css';
 
 const BorrowBook = ({ bookId, onBorrow }) => {
   const navigate = useNavigate();
@@ -29,13 +30,16 @@ const BorrowBook = ({ bookId, onBorrow }) => {
     } catch (err) {
       console.error('Error borrowing book:', err);
       setError(err.response?.data?.message || 'Failed to borrow book. Please try again.');
+        alert('You must be logged in to borrow a book, and you can only borrow one copy of this book at a time.');
+
+      
     }
 
 
   };
 
   return (
-    <button onClick={handleBorrow} className="borrow-button">
+    <button onClick={handleBorrow} className="borrow-button" >
       Borrow
     </button>
   );

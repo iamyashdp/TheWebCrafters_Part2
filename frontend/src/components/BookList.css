@@ -111,9 +111,24 @@
   transform: scale(1.05); 
 }
 
+.book-item .not-available-button {
+  background-color: #ccc; 
+  color: white;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: not-allowed; 
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.book-item .not-available-button:hover {
+  background-color: #aaa; 
+}
+
 /* Return button */
 .return-button {
-  background-color: #0056b3;
+  background-color: #007bff;
   color: white;
   padding: 0.6rem 1rem;
   border: none;
@@ -124,8 +139,10 @@
 }
 
 .return-button:hover {
-  background-color: #e0a800;
+  background-color: #0056b3;
 }
+
+
 
 @media (max-width: 768px) {
   .book-grid {

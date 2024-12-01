@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ReturnBook from './ReturnBook'; // Import the ReturnBook component
+import ReturnBook from './ReturnBook'; 
 
 const MyProfile = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
@@ -14,7 +14,7 @@ const MyProfile = () => {
           throw new Error('Authentication token not found. Please log in.');
         }
 
-        const response = await axios.get('http://localhost:5000/api/books/borrowed', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/books/borrowed`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -31,7 +31,6 @@ const MyProfile = () => {
   }, []);
 
   const handleReturn = (bookId) => {
-    // Logic for returning the book
   };
 
   return (

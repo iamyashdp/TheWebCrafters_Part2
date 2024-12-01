@@ -10,12 +10,12 @@ const Home = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try{
-        const response = await axios.get('http://localhost:5000/api/books');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/books`);
         setBooks(response.data);
       }
       catch(err){
         console.error('Error fetching books:', err);
-        alert(err.response?.data?.message || 'Failed to fetch books. Please make sure backend server is running. Please go to ../backend and run `node app` command to run ');
+        alert(err.response?.data?.message || 'Failed to fetch books. Please make sure backend server is running.');
       }
       
     };

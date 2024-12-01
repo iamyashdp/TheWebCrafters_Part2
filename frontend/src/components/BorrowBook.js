@@ -5,7 +5,6 @@ import './BookList.css';
 
 const BorrowBook = ({ bookId, onBorrow }) => {
   const navigate = useNavigate();
-  const [error, setError] = useState('');
 
   const handleBorrow = async () => {
     try {
@@ -15,7 +14,7 @@ const BorrowBook = ({ bookId, onBorrow }) => {
       }
 
       await axios.post(
-        `http://localhost:5000/api/books/borrow/${bookId}`,
+        `${process.env.REACT_APP_API_URL}/books/borrow/${bookId}`,
         {},
         {
           headers: {
@@ -25,16 +24,12 @@ const BorrowBook = ({ bookId, onBorrow }) => {
       );
 
       alert('Book borrowed successfully!');
-      onBorrow(bookId);  // Update the UI to reflect the borrow action
+      onBorrow(bookId);  
       navigate('/'); 
     } catch (err) {
       console.error('Error borrowing book:', err);
-      setError(err.response?.data?.message || 'Failed to borrow book. Please try again.');
         alert('You must be logged in to borrow a book, and you can only borrow one copy of this book at a time.');
-
-      
     }
-
 
   };
 

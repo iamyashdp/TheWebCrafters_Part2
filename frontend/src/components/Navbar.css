@@ -10,15 +10,15 @@ nav {
 
 .navbar-logo {
   width: 40px;
-  height: auto; /* Maintain the aspect ratio */
-  margin-right: 10px; /* Space between logo and text */
+  height: auto; 
+  margin-right: 10px; 
 }
 
 nav .nav-links {
   display: flex;
   flex-grow: 1;
-  justify-content: center; /* Center links horizontally */
-  gap: 20px; /* Set a gap between links to keep them close */
+  justify-content: center; 
+  gap: 20px; 
 }
 
 nav a {

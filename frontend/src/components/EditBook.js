@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const EditBook = () => {
-  const { bookId } = useParams(); // Get book ID from URL
+  const { bookId } = useParams(); 
   const navigate = useNavigate();
 
   const [book, setBook] = useState({
@@ -17,10 +17,9 @@ const EditBook = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Fetch the current book details
     const fetchBook = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/books/${bookId}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/books/${bookId}`);
         setBook(response.data);
       } catch (err) {
         console.error('Error fetching book details:', err);
@@ -39,23 +38,23 @@ const EditBook = () => {
     e.preventDefault();
   
     try {
-      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+      const token = localStorage.getItem('token'); 
       if (!token) {
         throw new Error('No authentication token found. Please log in again.');
       }
   
       await axios.put(
-        `http://localhost:5000/api/books/${bookId}`,
+        `${process.env.REACT_APP_API_URL}/books/${bookId}`,
         book,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            Authorization: `Bearer ${token}`, 
           },
         }
       );
   
       alert('Book updated successfully!');
-      navigate('/'); // Redirect to the home page
+      navigate('/'); 
     } catch (err) {
       console.error('Error updating book:', err);
       setError('Failed to update book. Please check your credentials and try again.');

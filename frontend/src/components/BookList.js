@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './BookList.css';
-import BorrowBook from './BorrowBook'; // Import the BorrowBook component
+import BorrowBook from './BorrowBook';
 
 const BookList = ({ books, setBooks }) => {
   const handleDelete = async (id) => {
@@ -16,7 +16,7 @@ const BookList = ({ books, setBooks }) => {
       const confirmDelete = window.confirm('Are you sure you want to delete this book?');
       if (!confirmDelete) return;
 
-      await axios.delete(`http://localhost:5000/api/books/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/books/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,7 +55,7 @@ const BookList = ({ books, setBooks }) => {
               {book.availableQuantity > 0 ? (
                 <BorrowBook bookId={book._id} onBorrow={handleBorrow} />
               ) : (
-                <p>Not Available</p>
+                <button disabled className="not-available-button">Not Available</button>
               )}
             </div>
           </li>
